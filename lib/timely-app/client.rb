@@ -22,6 +22,7 @@ module TimelyApp
       @http.use_ssl = true
 
       @account_id = options[:account_id]
+      @verbose = options[:verbose] || ENV['VERBOSE'] || false
     end
 
     def get(path, params = nil)
@@ -29,6 +30,10 @@ module TimelyApp
     end
 
     private
+
+    def verbose?
+      !@verbose.nil?
+    end
 
     def host_uri_join(path, params)
       URI::join("https://#{@host}", Params.join(path, params)).to_s
@@ -57,7 +62,7 @@ module TimelyApp
 
       response = @http.request(http_request)
 
-      if ENV["DEBUG"]
+      if verbose?
         puts ">> request: #{http_request.method} #{http_request.path} #{http_request.body}"
         puts "<< response: #{http_request.method} #{http_request.path} #{response.code} #{response.body}"
       end
