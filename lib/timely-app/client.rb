@@ -22,7 +22,7 @@ module TimelyApp
       @http.use_ssl = true
 
       @account_id = options[:account_id]
-      @verbose = options[:verbose] || ENV['VERBOSE'] || false
+      @verbose = options[:verbose] || ENV['VERBOSE'].nil? || false
     end
 
     def get(path, params = nil)
@@ -32,7 +32,7 @@ module TimelyApp
     private
 
     def verbose?
-      !@verbose.nil?
+      @verbose
     end
 
     def host_uri_join(path, params)
