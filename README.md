@@ -81,6 +81,10 @@ You can use [localhost.run](https://localhost.run/) to test callbacks locally.
 
 There are large list of available tools for tunneling: [awesome-tunneling](https://github.com/anderspitman/awesome-tunneling)
 
+## Acknowledgment
+
+- thanks to [timcraft](https://github.com/timcraft) and the team for [Noko API client](https://github.com/timcraft/noko) that was used as starting point
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/amkisko/timely-app
