@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
     "homepage" => "https://github.com/amkisko/timely-app",
     "source_code_uri" => "https://github.com/amkisko/timely-app",
     "bug_tracker_uri" => "https://github.com/amkisko/timely-app/issues",
-    "changelog_uri" => "https://github.com/amkisko/timely-app/blob/main/CHANGELOG.md"
+    "changelog_uri" => "https://github.com/amkisko/timely-app/blob/main/CHANGELOG.md",
     "rubygems_mfa_required" => "true"
   }
 
