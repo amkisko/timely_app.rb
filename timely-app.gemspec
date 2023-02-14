@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "timely-app"
-  s.version = "1.0.2"
+  s.version = "1.0.3"
 
   s.license = "MIT"
 
@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
     "rubygems_mfa_required" => "true"
   }
 
-  s.files = Dir.glob("lib/**/*.rb") + %w(CHANGELOG.md LICENSE.md README.md timely-app.gemspec bin/**/*)
+  s.files = Dir.glob("lib/**/*.rb") + Dir.glob("bin/**/*") + %w(CHANGELOG.md LICENSE.md README.md timely-app.gemspec)
 
   s.bindir      = "bin"
   s.executables = ["timely-app"]

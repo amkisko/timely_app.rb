@@ -1,3 +1,7 @@
+# 1.0.3
+
+* Fix gemspec
+
 # 1.0.2
 
 * Add basic CLI script `timely-app`
