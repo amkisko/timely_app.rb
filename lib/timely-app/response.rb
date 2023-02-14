@@ -28,7 +28,8 @@ module TimelyApp
     def error(response)
       if response.content_type == "application/json"
         body = JSON.parse(response.body)
-        error_class(response).new(body&.dig("errors", "message"), response: response, errors: body&.dig("errors"))
+        message = body&.dig("errors", "message") || body&.dig("error_description")
+        error_class(response).new(message, response: response, errors: body&.dig("errors"))
       else
         error_class(response).new(response: response)
       end

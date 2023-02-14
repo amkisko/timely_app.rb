@@ -57,6 +57,11 @@ module TimelyApp
 
       response = @http.request(http_request)
 
+      if ENV["DEBUG"]
+        puts ">> request: #{http_request.method} #{http_request.path} #{http_request.body}"
+        puts "<< response: #{http_request.method} #{http_request.path} #{response.code} #{response.body}"
+      end
+
       if response.is_a?(Net::HTTPSuccess)
         Response.parse(response)
       else

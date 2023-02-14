@@ -13,13 +13,14 @@ module TimelyApp
     end
 
     def post_oauth_token(client_id:, client_secret:, code:, redirect_uri:, grant_type: "authorization_code")
-      post("/1.1/oauth/token", body: {
+      post(
+        "/1.1/oauth/token",
         redirect_uri: redirect_uri,
         code: code,
         client_id: client_id,
         client_secret: client_secret,
         grant_type: grant_type
-      }, params: {})
+      )
     end
   end
 end
