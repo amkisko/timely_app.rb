@@ -4,6 +4,8 @@
 
 Ruby client for the [Timely API](https://dev.timelyapp.com).
 
+Sponsored by [Kisko Labs](https://www.kiskolabs.com).
+
 ## Install
 
 Using Bundler:
@@ -78,6 +80,10 @@ end
 You can use [localhost.run](https://localhost.run/) to test callbacks locally.
 
 There are large list of available tools for tunneling: [awesome-tunneling](https://github.com/anderspitman/awesome-tunneling)
+
+## Acknowledgment
+
+- thanks to [timcraft](https://github.com/timcraft) and the team for [Noko API client](https://github.com/timcraft/noko) that was used as starting point
 
 ## Contributing
 
