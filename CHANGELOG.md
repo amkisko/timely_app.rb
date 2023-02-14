@@ -1,3 +1,7 @@
+# 1.0.2
+
+* Add basic CLI script `timely-app`
+
 # 1.0.1
 
 * Fix oauth token request
