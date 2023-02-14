@@ -26,6 +26,8 @@ module TimelyApp
     end
 
     def command_exists?(cmd)
+      return false if cmd.nil? || cmd.empty?
+
       client.respond_to?(cmd)
     end
 
