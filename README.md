@@ -4,6 +4,8 @@
 
 Ruby client for the [Timely API](https://dev.timelyapp.com).
 
+Sponsored by [Kisko Labs](https://www.kiskolabs.com).
+
 ## Install
 
 Using Bundler:
