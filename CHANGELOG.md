@@ -1,3 +1,7 @@
+# 1.0.4
+
+* Update CLI to check input properly and handle command arguments
+
 # 1.0.3
 
 * Fix gemspec

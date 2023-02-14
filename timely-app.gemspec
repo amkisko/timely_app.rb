@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "timely-app"
-  s.version = "1.0.3"
+  s.version = "1.0.4"
 
   s.license = "MIT"
 
