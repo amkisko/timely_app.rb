@@ -7,11 +7,16 @@ GEM
     crack (0.4.5)
       rexml
     diff-lcs (1.5.0)
+    ffi (1.15.5-java)
     hashdiff (1.0.1)
     method_source (1.0.0)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    pry (0.14.2-java)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+      spoon (~> 0.0)
     public_suffix (5.0.1)
     rexml (3.2.5)
     rspec-core (3.12.1)
@@ -20,12 +25,15 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
     rspec-support (3.12.0)
+    spoon (0.0.6)
+      ffi
     webmock (3.18.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
 
 PLATFORMS
+  universal-java-11
   x86_64-darwin-21
   x86_64-linux
 
