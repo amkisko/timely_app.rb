@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'timely-app/version'
 require 'timely-app/errors'
 require 'timely-app/link_header'
@@ -13,7 +14,8 @@ module TimelyApp
     attr_accessor :account_id
 
     def initialize(options = {})
-      @auth_header, @auth_value = 'Authorization', "Bearer #{options[:access_token]}"
+      @auth_header = 'Authorization'
+      @auth_value = "Bearer #{options[:access_token]}"
       @user_agent = options.fetch(:user_agent) { "timely-app/#{VERSION} ruby/#{RUBY_VERSION}" }
 
       @host = 'api.timelyapp.com'
@@ -22,7 +24,7 @@ module TimelyApp
       @http.use_ssl = true
 
       @account_id = options[:account_id]
-      @verbose = options[:verbose] || ENV['VERBOSE'].nil? || false
+      @verbose = options[:verbose] || !ENV['VERBOSE'].nil? || false
     end
 
     def get(path, params = nil)
@@ -32,7 +34,7 @@ module TimelyApp
     private
 
     def verbose?
-      @verbose
+      @verbose == true
     end
 
     def host_uri_join(path, params)
@@ -67,11 +69,9 @@ module TimelyApp
         puts "<< response: #{http_request.method} #{http_request.path} #{response.code} #{response.body}"
       end
 
-      if response.is_a?(Net::HTTPSuccess)
-        Response.parse(response)
-      else
-        raise Response.error(response)
-      end
+      raise Response.error(response) unless response.is_a?(Net::HTTPSuccess)
+
+      Response.parse(response)
     end
   end
 end
