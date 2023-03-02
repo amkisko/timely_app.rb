@@ -91,6 +91,14 @@ There are large list of available tools for tunneling: [awesome-tunneling](https
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/amkisko/timely-app
 
+## Publishing
+
+```sh
+rm timely-app-*.gem
+gem build timely-app.gemspec
+gem push timely-app-*.gem
+```
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

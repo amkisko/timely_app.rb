@@ -1,3 +1,7 @@
+# 1.0.5
+
+* Fix verbose mode check
+
 # 1.0.4
 
 * Update CLI to check input properly and handle command arguments
