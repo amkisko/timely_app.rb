@@ -22,10 +22,12 @@ gem install timely-app
 
 Register your local service at https://app.timelyapp.com/{account_id}/oauth_applications
 
-Run auth script:
+Install `timely-app` gem as dependency or globally.
+
+Run auth:
 
 ```sh
-TIMELY_CLIENT_ID=<CLIENT_ID> TIMELY_CLIENT_SECRET=<CLIENT_SECRET> ./examples/auth_cli.rb
+TIMELY_CLIENT_ID=<client_id> TIMELY_CLIENT_SECRET=<client_secret> bundle exec timely-app auth -s
 ```
 
 ## Usage for web service
