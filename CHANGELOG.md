@@ -1,3 +1,8 @@
+# 1.1.0
+
+* Update ruby version to 3.2.2
+* Update dependencies
+
 # 1.0.5
 
 * Fix verbose mode check
