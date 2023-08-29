@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'timely-app/version'
 require 'timely-app/errors'
 require 'timely-app/link_header'
 require 'timely-app/params'

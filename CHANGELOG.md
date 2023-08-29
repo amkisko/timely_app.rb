@@ -1,3 +1,7 @@
+# 1.2.0
+
+* Fix version definition
+
 # 1.1.1
 
 * Update gem configuration
