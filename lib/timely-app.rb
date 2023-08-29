@@ -13,3 +13,7 @@ require 'timely-app/client/teams'
 require 'timely-app/client/user_capacities'
 require 'timely-app/client/users'
 require 'timely-app/client/webhooks'
+
+module TimelyApp
+  VERSION = '1.1.1'
+end

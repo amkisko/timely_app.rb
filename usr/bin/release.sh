@@ -10,8 +10,10 @@ e() {
 }
 
 GEM_NAME="timely-app"
-VERSION=$(grep -e 's.version.*' $GEM_NAME.gemspec | cut -d '"' -f 2)
+VERSION=$(grep -Eo "VERSION\s*=\s*'.+'" lib/timely-app.rb | grep -Eo "[0-9.]{5,}")
 GEM_FILE="$GEM_NAME-$VERSION.gem"
 
 e "gem build $GEM_NAME.gemspec"
 e "gem push $GEM_FILE"
+
+e "git tag $VERSION && git push --tags"
