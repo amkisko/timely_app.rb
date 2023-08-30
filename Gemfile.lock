@@ -8,7 +8,6 @@ GEM
   specs:
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
-    byebug (11.1.3)
     coderay (1.1.3)
     crack (0.4.5)
       rexml
@@ -24,9 +23,6 @@ GEM
       coderay (~> 1.1)
       method_source (~> 1.0)
       spoon (~> 0.0)
-    pry-byebug (3.10.1)
-      byebug (~> 11.0)
-      pry (>= 0.13, < 0.15)
     public_suffix (5.0.3)
     rexml (3.2.6)
     rspec-core (3.12.2)
@@ -55,7 +51,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  pry-byebug (~> 3)
+  pry (~> 0.14)
   rspec-core (~> 3)
   rspec-expectations (~> 3)
   simplecov (~> 0.21)
