@@ -15,5 +15,5 @@ require 'timely-app/client/users'
 require 'timely-app/client/webhooks'
 
 module TimelyApp
-  VERSION = '1.2.0'
+  VERSION = '1.3.0'
 end
