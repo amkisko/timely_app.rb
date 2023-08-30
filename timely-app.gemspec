@@ -26,7 +26,7 @@ Gem::Specification.new do |gem|
   gem.bindir      = "bin"
   gem.executables = ["timely-app"]
 
-  gem.required_ruby_version = ">= 1.9.3"
+  gem.required_ruby_version = ">= 2.5.0"
   gem.require_path = "lib"
 
   gem.add_development_dependency 'rspec-core', '~> 3'
@@ -34,4 +34,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'webmock', '~> 3'
   gem.add_development_dependency 'pry', '~> 0.14'
   gem.add_development_dependency 'simplecov', '~> 0.21'
+  gem.add_development_dependency 'simplecov-cobertura', '~> 2'
 end
