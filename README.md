@@ -1,6 +1,6 @@
 # timely-app
 
-[![Gem Version](https://badge.fury.io/rb/timely-app.svg)](https://badge.fury.io/rb/timely-app) [![Test Status](https://github.com/amkisko/timely-app/actions/workflows/test.yml/badge.svg)](https://github.com/amkisko/timely-app/actions/workflows/test.yml)
+[![Gem Version](https://badge.fury.io/rb/timely-app.svg)](https://badge.fury.io/rb/timely-app) [![Test Status](https://github.com/amkisko/timely-app/actions/workflows/test.yml/badge.svg)](https://github.com/amkisko/timely-app/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/amkisko/timely_app.rb/graph/badge.svg?token=QL3A7ATCRK)](https://codecov.io/gh/amkisko/timely_app.rb)
 
 Ruby client for the [Timely API](https://dev.timelyapp.com).
 
