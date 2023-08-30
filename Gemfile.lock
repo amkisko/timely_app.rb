@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    timely-app (1.1.1)
+    timely-app (1.2.0)
 
 GEM
   remote: https://rubygems.org/
