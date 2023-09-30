@@ -16,6 +16,6 @@ module TimelyApp
 
   UnauthorizedError = Class.new(ClientError)
 
-  NotFound = Class.new(ClientError)
+  NotFoundError = Class.new(ClientError)
   ForbiddenError = Class.new(ClientError)
 end
