@@ -18,7 +18,7 @@ RSpec.describe TimelyApp::Record do
 
   describe '#to_h' do
     it 'returns an attributes hash' do
-      attributes = {project_id: id}
+      attributes = { project_id: id }
 
       expect(record.to_h).to eq(attributes)
     end
