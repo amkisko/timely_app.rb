@@ -8,7 +8,7 @@ module TimelyApp
     end
 
     def get_clients(**params)
-      get('/1.1/accounts', params)
+      get("/1.1/#{account_id}/clients", **params)
     end
 
     def get_client(id)
