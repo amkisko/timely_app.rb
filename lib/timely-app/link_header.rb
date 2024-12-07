@@ -1,5 +1,5 @@
-require 'timely-app/record'
-require 'uri'
+require "timely-app/record"
+require "uri"
 
 module TimelyApp
   module LinkHeader

@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name = "timely-app"
-  gem.version = File.read(File.expand_path('../lib/timely-app.rb', __FILE__)).match(/VERSION\s*=\s*'(.*?)'/)[1]
+  gem.version = File.read(File.expand_path("../lib/timely-app.rb", __FILE__)).match(/VERSION\s*=\s*"(.*?)"/)[1]
 
   gem.license = "MIT"
 
@@ -21,18 +21,19 @@ Gem::Specification.new do |gem|
     "rubygems_mfa_required" => "true"
   }
 
-  gem.files = Dir.glob("lib/**/*.rb") + Dir.glob("bin/**/*") + %w(CHANGELOG.md LICENSE.md README.md timely-app.gemspec)
+  gem.files = Dir.glob("lib/**/*.rb") + Dir.glob("bin/**/*") + %w[CHANGELOG.md LICENSE.md README.md timely-app.gemspec]
 
-  gem.bindir      = "bin"
+  gem.bindir = "bin"
   gem.executables = ["timely-app"]
 
   gem.required_ruby_version = ">= 2.5.0"
   gem.require_path = "lib"
 
-  gem.add_development_dependency 'rspec-core', '~> 3'
-  gem.add_development_dependency 'rspec-expectations', '~> 3'
-  gem.add_development_dependency 'webmock', '~> 3'
-  gem.add_development_dependency 'pry', '~> 0.14'
-  gem.add_development_dependency 'simplecov', '~> 0.21'
-  gem.add_development_dependency 'simplecov-cobertura', '~> 2'
+  gem.add_development_dependency "rspec-core", "~> 3"
+  gem.add_development_dependency "rspec-expectations", "~> 3"
+  gem.add_development_dependency "rspec_junit_formatter", "~> 0.6"
+  gem.add_development_dependency "simplecov", "~> 0.21"
+  gem.add_development_dependency "simplecov-cobertura", "~> 2"
+  gem.add_development_dependency "webmock", "~> 3"
+  gem.add_development_dependency "pry", "~> 0.14"
 end

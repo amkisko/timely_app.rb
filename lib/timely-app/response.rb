@@ -1,6 +1,7 @@
 # frozen_string_literal: true
-require 'net/http'
-require 'json'
+
+require "net/http"
+require "json"
 
 module TimelyApp
   module Response
@@ -11,12 +12,12 @@ module TimelyApp
         return :no_content
       end
 
-      if response.content_type == 'application/json'
+      if response.content_type == "application/json"
         object = JSON.parse(response.body, symbolize_names: true, object_class: Record)
 
-        if response['Link']
+        if response["Link"]
           object.singleton_class.module_eval { attr_accessor :link }
-          object.link = LinkHeader.parse(response['Link'])
+          object.link = LinkHeader.parse(response["Link"])
         end
 
         return object

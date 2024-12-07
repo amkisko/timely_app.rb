@@ -4,7 +4,7 @@
 module TimelyApp
   class Client
     def get_accounts
-      get('/1.1/accounts')
+      get("/1.1/accounts")
     end
 
     def get_account_activities(account_id, **params)

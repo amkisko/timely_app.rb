@@ -14,7 +14,7 @@ module TimelyApp
 
     def method_missing(name, *args, &block)
       if @attributes.has_key?(name) && args.empty? && block.nil?
-        return @attributes[name]
+        @attributes[name]
       else
         super name, *args, &block
       end

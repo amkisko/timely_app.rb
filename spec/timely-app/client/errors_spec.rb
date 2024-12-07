@@ -1,10 +1,10 @@
-require 'spec_helper'
+require "spec_helper"
 
-RSpec.describe 'TimelyApp::Client' do
-  include_context 'TimelyApp::Client'
+RSpec.describe "TimelyApp::Client" do
+  include_context "TimelyApp::Client"
 
-  context 'with a bad request error' do
-    it 'raises an exception' do
+  context "with a bad request error" do
+    it "raises an exception" do
       response = json_response.merge(status: 422, body: %(
         {
           "errors":{
@@ -28,8 +28,8 @@ RSpec.describe 'TimelyApp::Client' do
     end
   end
 
-  describe 'with an authentication error' do
-    it 'raises an exception' do
+  describe "with an authentication error" do
+    it "raises an exception" do
       response = json_response.merge(status: 401)
 
       stub_request(:get, "#{base_url}/1.1/accounts").to_return(response)

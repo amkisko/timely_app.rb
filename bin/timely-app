@@ -26,8 +26,8 @@ cli = TimelyApp::CLI.new(options)
 cmd = ARGV.shift
 case cmd
 when "auth"
-  client_id = ARGV.shift || ENV.fetch('TIMELY_CLIENT_ID')
-  client_secret = ARGV.shift || ENV.fetch('TIMELY_CLIENT_SECRET')
+  client_id = ARGV.shift || ENV.fetch("TIMELY_CLIENT_ID")
+  client_secret = ARGV.shift || ENV.fetch("TIMELY_CLIENT_SECRET")
   ARGV.clear
   if client_id && client_secret
     cli.auth(client_id, client_secret)
@@ -46,7 +46,10 @@ when "config"
   end
 else
   if cli.command_exists?(cmd)
-    args = ARGV.reduce({}){ |h, arg| k, v = arg.split("="); h[k] = v; h }
+    args = ARGV.each_with_object({}) { |arg, h|
+      k, v = arg.split("=")
+      h[k] = v
+    }
     ARGV.clear
     response = cli.call(cmd, *args)
     case response

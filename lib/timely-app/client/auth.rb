@@ -6,7 +6,7 @@ module TimelyApp
     def get_oauth_authorize_url(client_id:, redirect_uri:)
       host_uri_join(
         "/1.1/oauth/authorize",
-        response_type: 'code',
+        response_type: "code",
         redirect_uri: redirect_uri,
         client_id: client_id
       )

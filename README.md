@@ -9,11 +9,13 @@ Sponsored by [Kisko Labs](https://www.kiskolabs.com).
 ## Install
 
 Using Bundler:
+
 ```sh
 bundle add timely-app
 ```
 
 Using RubyGems:
+
 ```sh
 gem install timely-app
 ```

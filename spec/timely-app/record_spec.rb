@@ -1,24 +1,24 @@
-require 'spec_helper'
+require "spec_helper"
 
 RSpec.describe TimelyApp::Record do
   let(:id) { 123 }
   let(:record) { TimelyApp::Record.new(project_id: id) }
 
-  describe '#[]' do
-    it 'returns attribute values' do
+  describe "#[]" do
+    it "returns attribute values" do
       expect(record[:project_id]).to eq(id)
     end
   end
 
-  describe '#method_missing' do
-    it 'returns attribute values' do
+  describe "#method_missing" do
+    it "returns attribute values" do
       expect(record.project_id).to eq(id)
     end
   end
 
-  describe '#to_h' do
-    it 'returns an attributes hash' do
-      attributes = { project_id: id }
+  describe "#to_h" do
+    it "returns an attributes hash" do
+      attributes = {project_id: id}
 
       expect(record.to_h).to eq(attributes)
     end
