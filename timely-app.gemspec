@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   repository_url = "https://github.com/amkisko/timely_app.rb"
 
   gem.authors = ["Andrei Makarov"]
-  gem.email = ["andrei@kiskolabs.com"]
+  gem.email = ["contact@kiskolabs.com"]
   gem.homepage = repository_url
   gem.description = "Ruby client for the Timely API"
   gem.summary = "See description"
