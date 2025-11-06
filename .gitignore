@@ -21,4 +21,6 @@
 
 *.local
 
-timely-app-*.gem
+*.gem
+
+/gemfiles/*.lock
