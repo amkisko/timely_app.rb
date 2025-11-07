@@ -14,6 +14,34 @@ RSpec.describe TimelyApp::Record do
     it "returns attribute values" do
       expect(record.project_id).to eq(id)
     end
+
+    it "calls super when attribute doesn't exist" do
+      expect {
+        record.nonexistent_attribute
+      }.to raise_error(NoMethodError)
+    end
+
+    it "calls super when method has arguments" do
+      expect {
+        record.project_id(123)
+      }.to raise_error(NoMethodError)
+    end
+
+    it "calls super when method has block" do
+      expect {
+        record.project_id { "block" }
+      }.to raise_error(NoMethodError)
+    end
+  end
+
+  describe "#respond_to_missing?" do
+    it "returns true when attribute exists" do
+      expect(record.respond_to?(:project_id)).to be true
+    end
+
+    it "returns false when attribute doesn't exist" do
+      expect(record.respond_to?(:nonexistent_attribute)).to be false
+    end
   end
 
   describe "#to_h" do

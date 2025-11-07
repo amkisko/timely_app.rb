@@ -18,6 +18,20 @@ class TimelyTestJob
 end
 
 RSpec.describe TimelyApp::Client do
+  describe "verbose mode" do
+    let(:client) { TimelyApp::Client.new(access_token: "test_token", account_id: "test_account", verbose: true) }
+
+    it "outputs request and response when verbose is enabled" do
+      stub_request(:get, "https://api.timelyapp.com/1.1/test_account/events")
+        .with(headers: {"Authorization" => "Bearer test_token"})
+        .to_return(status: 200, body: "[]", headers: {"Content-Type" => "application/json"})
+
+      expect {
+        client.get("/1.1/test_account/events")
+      }.to output(/>> request: GET.*<< response: GET/m).to_stdout
+    end
+  end
+
   describe "#get_events" do
     before do
       stub_request(:get, "https://api.timelyapp.com/1.1/test_account_id/events?day=2023-01-01&page=1&per_page=50")
