@@ -113,15 +113,15 @@ PLATFORMS
 
 DEPENDENCIES
   pry (~> 0.15)
-  rbs (~> 3.9)
-  rspec-core (~> 3.13)
-  rspec-expectations (~> 3.13)
+  rbs (~> 3)
+  rspec-core (~> 3)
+  rspec-expectations (~> 3)
   rspec_junit_formatter (~> 0.6)
   simplecov (~> 0.22)
-  simplecov-cobertura (~> 3.1)
-  standard (~> 1.51)
+  simplecov-cobertura (~> 3)
+  standard (~> 1)
   timely-app!
-  webmock (~> 3.26)
+  webmock (~> 3)
 
 BUNDLED WITH
    2.4.10
