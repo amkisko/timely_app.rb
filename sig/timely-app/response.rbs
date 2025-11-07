@@ -1,0 +1,10 @@
+module TimelyApp
+  module Response
+    def self.parse: (Net::HTTPResponse response) -> (TimelyApp::Record | String | :no_content)
+
+    def self.error: (Net::HTTPResponse response) -> TimelyApp::Error
+
+    def self.error_class: (Net::HTTPResponse object) -> singleton(TimelyApp::Error)
+  end
+end
+

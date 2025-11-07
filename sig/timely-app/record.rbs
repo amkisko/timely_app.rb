@@ -1,0 +1,15 @@
+module TimelyApp
+  class Record
+    def initialize: (?Hash[Symbol, untyped] attributes) -> void
+
+    def []: (Symbol name) -> untyped
+    def []=: (Symbol name, untyped value) -> untyped
+
+    def method_missing: (Symbol name, *untyped args) { (*untyped) -> untyped } -> untyped
+
+    def respond_to_missing?: (Symbol name, ?bool include_private) -> bool
+
+    def to_h: () -> Hash[Symbol, untyped]
+  end
+end
+

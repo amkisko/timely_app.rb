@@ -1,0 +1,14 @@
+module TimelyApp
+  module Params
+    def self.join: (String path, ?Hash[untyped, untyped]? params) -> String
+
+    def self.encode: (Hash[untyped, untyped] params) -> String
+
+    private
+
+    def self.array_escape: (untyped object) -> String
+
+    def self.escape: (untyped component) -> String
+  end
+end
+

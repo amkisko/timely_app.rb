@@ -1,0 +1,16 @@
+module TimelyApp
+  class Client
+    def create_label: (name: String, **untyped) -> untyped
+
+    def delete_label: (Integer id) -> untyped
+
+    def get_child_labels: (Integer parent_id) -> untyped
+
+    def get_labels: (**untyped) -> untyped
+
+    def get_label: (Integer id) -> untyped
+
+    def update_label: (Integer id, name: String, **untyped) -> untyped
+  end
+end
+

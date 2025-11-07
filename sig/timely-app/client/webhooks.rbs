@@ -1,0 +1,14 @@
+module TimelyApp
+  class Client
+    def create_webhook: (url: String, **untyped) -> untyped
+
+    def delete_webhook: (Integer id) -> untyped
+
+    def get_webhooks: (**untyped) -> untyped
+
+    def get_webhook: (Integer id) -> untyped
+
+    def update_webhook: (Integer id, url: String, **untyped) -> untyped
+  end
+end
+

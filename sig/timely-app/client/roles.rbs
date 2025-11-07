@@ -1,0 +1,6 @@
+module TimelyApp
+  class Client
+    def get_roles: () -> untyped
+  end
+end
+

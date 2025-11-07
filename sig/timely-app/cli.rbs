@@ -1,0 +1,33 @@
+module TimelyApp
+  class CLI
+    attr_reader options: Hash[Symbol, untyped]
+    attr_reader client: TimelyApp::Client
+
+    def initialize: (?Hash[Symbol, untyped] options) -> void
+
+    def get_config: (String key) -> untyped?
+
+    def set_config: (String key, untyped value) -> void
+
+    def command_exists?: (String? cmd) -> bool
+
+    def call: (String cmd, *untyped args) -> untyped
+
+    def auth: (String? client_id, String? client_secret) -> void
+
+    private
+
+    def config_file_path: () -> String
+
+    def read_config_file: () -> Hash[String, untyped]?
+
+    def fetch_account_id: () -> untyped?
+
+    def fetch_access_token: () -> untyped?
+
+    def check_access_token: () -> void
+
+    def save_config_file: (**Hash[Symbol, untyped] options) -> void
+  end
+end
+

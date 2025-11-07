@@ -1,0 +1,14 @@
+module TimelyApp
+  class Client
+    def create_team: (name: String, users: Array[untyped], **untyped) -> untyped
+
+    def delete_team: (Integer id) -> untyped
+
+    def get_teams: (**untyped) -> untyped
+
+    def get_team: (Integer id) -> untyped
+
+    def update_team: (Integer id, name: String, users: Array[untyped], **untyped) -> untyped
+  end
+end
+

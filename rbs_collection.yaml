@@ -1,0 +1,16 @@
+# RBS collection configuration
+# See https://github.com/ruby/rbs/blob/master/docs/collection.md
+
+path: .gem_rbs_collection
+
+gems:
+  # Add gem dependencies here if they have RBS type definitions
+  # Example:
+  # - name: activesupport
+  #   source:
+  #     type: git
+  #     name: ruby/gem_rbs_collection
+  #     remote: https://github.com/ruby/gem_rbs_collection.git
+  #     revision: main
+  #     repo_dir: gems/activesupport
+

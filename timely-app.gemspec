@@ -6,22 +6,20 @@ Gem::Specification.new do |gem|
 
   gem.platform = Gem::Platform::RUBY
 
-  repository_url = "https://github.com/amkisko/timely_app.rb"
-
   gem.authors = ["Andrei Makarov"]
   gem.email = ["contact@kiskolabs.com"]
-  gem.homepage = repository_url
+  gem.homepage = "https://github.com/amkisko/timely_app.rb"
   gem.description = "Ruby client for the Timely API"
   gem.summary = "See description"
   gem.metadata = {
-    "homepage" => repository_url,
-    "source_code_uri" => repository_url,
-    "bug_tracker_uri" => "#{repository_url}/issues",
-    "changelog_uri" => "#{repository_url}/blob/main/CHANGELOG.md",
+    "homepage" => "https://github.com/amkisko/timely_app.rb",
+    "source_code_uri" => "https://github.com/amkisko/timely_app.rb",
+    "bug_tracker_uri" => "https://github.com/amkisko/timely_app.rb/issues",
+    "changelog_uri" => "https://github.com/amkisko/timely_app.rb/blob/main/CHANGELOG.md",
     "rubygems_mfa_required" => "true"
   }
 
-  gem.files = Dir.glob("lib/**/*.rb") + Dir.glob("bin/**/*") + %w[CHANGELOG.md LICENSE.md README.md timely-app.gemspec]
+  gem.files = Dir.glob("lib/**/*.rb") + Dir.glob("bin/**/*") + Dir.glob("sig/**/*.rbs") + %w[CHANGELOG.md LICENSE.md README.md timely-app.gemspec]
 
   gem.bindir = "bin"
   gem.executables = ["timely-app"]
@@ -36,4 +34,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "simplecov-cobertura", "~> 2"
   gem.add_development_dependency "webmock", "~> 3"
   gem.add_development_dependency "pry", "~> 0.14"
+  gem.add_development_dependency "standard", "~> 1.0"
+  gem.add_development_dependency "rbs", "~> 3.0"
 end

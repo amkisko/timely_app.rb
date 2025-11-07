@@ -1,0 +1,14 @@
+module TimelyApp
+  class Client
+    def create_project: (name: String, color: String, client_id: Integer, users: Array[untyped], **untyped) -> untyped
+
+    def delete_project: (Integer id) -> untyped
+
+    def get_projects: (**untyped) -> untyped
+
+    def get_project: (Integer id) -> untyped
+
+    def update_project: (Integer id, name: String, color: String, client_id: Integer, users: Array[untyped], **untyped) -> untyped
+  end
+end
+

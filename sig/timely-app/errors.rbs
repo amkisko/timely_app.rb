@@ -1,0 +1,24 @@
+module TimelyApp
+  class Error < StandardError
+    attr_reader response: Net::HTTPResponse
+    attr_reader errors: untyped?
+
+    def initialize: (?String? message, response: Net::HTTPResponse, ?untyped? errors) -> void
+  end
+
+  class ClientError < Error
+  end
+
+  class ServerError < Error
+  end
+
+  class UnauthorizedError < ClientError
+  end
+
+  class NotFoundError < ClientError
+  end
+
+  class ForbiddenError < ClientError
+  end
+end
+

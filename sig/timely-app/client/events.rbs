@@ -1,0 +1,36 @@
+module TimelyApp
+  class Client
+    def create_event: (day: String, hours: Integer, minutes: Integer, **untyped) -> untyped
+
+    def create_project_event: (Integer project_id, day: String, hours: Integer, minutes: Integer, **untyped) -> untyped
+
+    def create_user_event: (Integer user_id, day: String, hours: Integer, minutes: Integer, **untyped) -> untyped
+
+    def create_bulk_events: (Hash[untyped, untyped] create) -> untyped
+
+    def delete_event: (Integer id) -> untyped
+
+    def delete_bulk_events: (Hash[untyped, untyped] delete) -> untyped
+
+    def get_events: (**untyped) -> untyped
+
+    def get_project_events: (Integer project_id, **untyped) -> untyped
+
+    def get_user_events: (Integer user_id, **untyped) -> untyped
+
+    def update_user_event: (Integer id, Integer user_id, day: String, hours: Integer, minutes: Integer, **untyped) -> untyped
+
+    def update_project_event: (Integer id, Integer project_id, day: String, hours: Integer, minutes: Integer, **untyped) -> untyped
+
+    def get_event: (Integer id) -> untyped
+
+    def start_event_timer: (Integer id) -> untyped
+
+    def stop_event_timer: (Integer id) -> untyped
+
+    def update_event: (Integer id, day: String, hours: Integer, minutes: Integer, **untyped) -> untyped
+
+    def update_bulk_events: (Hash[untyped, untyped] update) -> untyped
+  end
+end
+

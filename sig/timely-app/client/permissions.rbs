@@ -1,0 +1,8 @@
+module TimelyApp
+  class Client
+    def get_current_user_permissions: () -> untyped
+
+    def get_user_permissions: (Integer user_id) -> untyped
+  end
+end
+

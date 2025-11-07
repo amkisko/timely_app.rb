@@ -1,0 +1,8 @@
+module TimelyApp
+  class Client
+    def get_reports: (**untyped) -> untyped
+
+    def get_filter_reports: (**untyped) -> untyped
+  end
+end
+

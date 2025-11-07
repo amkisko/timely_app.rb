@@ -1,0 +1,10 @@
+module TimelyApp
+  class Client
+    def get_accounts: () -> untyped
+
+    def get_account_activities: (Integer account_id, **untyped) -> untyped
+
+    def get_account: (Integer id) -> untyped
+  end
+end
+

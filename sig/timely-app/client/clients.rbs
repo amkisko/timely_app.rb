@@ -1,0 +1,12 @@
+module TimelyApp
+  class Client
+    def create_client: (name: String, **untyped) -> untyped
+
+    def get_clients: (**untyped) -> untyped
+
+    def get_client: (Integer id) -> untyped
+
+    def update_client: (Integer id, name: String, **untyped) -> untyped
+  end
+end
+

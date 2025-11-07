@@ -1,0 +1,12 @@
+module TimelyApp
+  class Client
+    def create_forecast: (project_id: Integer, **untyped) -> untyped
+
+    def delete_forecast: (Integer id) -> untyped
+
+    def get_forecasts: (**untyped) -> untyped
+
+    def update_forecast: (Integer id, project_id: Integer, estimated_minutes: Integer, **untyped) -> untyped
+  end
+end
+

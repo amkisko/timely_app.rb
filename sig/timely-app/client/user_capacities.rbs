@@ -1,0 +1,8 @@
+module TimelyApp
+  class Client
+    def get_users_capacities: (**untyped) -> untyped
+
+    def get_user_capacities: (user_id: Integer) -> untyped
+  end
+end
+

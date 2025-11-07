@@ -1,0 +1,8 @@
+module TimelyApp
+  module LinkHeader
+    REGEXP: Regexp
+
+    def self.parse: (String string) -> TimelyApp::Record
+  end
+end
+

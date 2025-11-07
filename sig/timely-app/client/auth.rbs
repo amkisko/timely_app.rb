@@ -1,0 +1,8 @@
+module TimelyApp
+  class Client
+    def get_oauth_authorize_url: (client_id: String, redirect_uri: String) -> String
+
+    def post_oauth_token: (client_id: String, client_secret: String, code: String, redirect_uri: String, ?String grant_type) -> untyped
+  end
+end
+

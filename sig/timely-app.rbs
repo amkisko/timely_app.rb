@@ -1,0 +1,6 @@
+# RBS type definitions for timely-app gem
+
+module TimelyApp
+  VERSION: String
+end
+

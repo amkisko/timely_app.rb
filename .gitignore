@@ -24,3 +24,6 @@
 *.gem
 
 /gemfiles/*.lock
+
+# RBS collection
+.gem_rbs_collection

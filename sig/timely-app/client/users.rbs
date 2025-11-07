@@ -1,0 +1,16 @@
+module TimelyApp
+  class Client
+    def create_user: (name: String, email: String, role_id: Integer, **untyped) -> untyped
+
+    def delete_user: (Integer id) -> untyped
+
+    def get_users: (**untyped) -> untyped
+
+    def get_user: (Integer id) -> untyped
+
+    def get_current_user: () -> untyped
+
+    def update_user: (Integer id, name: String, email: String, role_id: Integer, **untyped) -> untyped
+  end
+end
+

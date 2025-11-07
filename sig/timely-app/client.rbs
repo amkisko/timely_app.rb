@@ -1,0 +1,24 @@
+module TimelyApp
+  class Client
+    attr_accessor account_id: Integer?
+
+    def initialize: (?Hash[Symbol, untyped] options) -> void
+
+    def get: (String path, ?Hash[untyped, untyped]? params) -> untyped
+
+    private
+
+    def verbose?: () -> bool
+
+    def host_uri_join: (String path, Hash[untyped, untyped] params) -> String
+
+    def post: (String path, Hash[untyped, untyped] attributes) -> untyped
+
+    def put: (String path, ?Hash[untyped, untyped]? attributes) -> untyped
+
+    def delete: (String path) -> untyped
+
+    def request: (Net::HTTPRequest http_request, ?Hash[untyped, untyped]? body_object) -> untyped
+  end
+end
+
