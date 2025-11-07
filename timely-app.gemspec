@@ -36,4 +36,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "pry", "~> 0.15"
   gem.add_development_dependency "standard", "~> 1"
   gem.add_development_dependency "rbs", "~> 3"
+  gem.add_development_dependency "appraisal", "~> 2"
 end
