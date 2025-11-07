@@ -105,9 +105,7 @@ module TimelyApp
     def save_config_file(**options)
       config = read_config_file || {}
       config.merge!(options)
-      File.open(config_file_path, "w") do |f|
-        f.write(config.to_yaml)
-      end
+      File.write(config_file_path, config.to_yaml)
       puts "Saved to #{config_file_path}"
     end
   end

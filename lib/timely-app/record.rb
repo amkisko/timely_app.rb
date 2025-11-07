@@ -16,7 +16,7 @@ module TimelyApp
       if @attributes.has_key?(name) && args.empty? && block.nil?
         @attributes[name]
       else
-        super name, *args, &block
+        super
       end
     end
 
