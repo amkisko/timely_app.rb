@@ -1,11 +1,16 @@
 require "simplecov"
-SimpleCov.start do
-  add_filter "/spec/"
-  add_filter { |source_file| source_file.lines.count < 5 }
-end
-
 require "simplecov-cobertura"
-SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
+require "simplecov_json_formatter"
+
+SimpleCov.start do
+  track_files "{lib,app}/**/*.rb"
+  add_filter "/lib/tasks/"
+  formatter SimpleCov::Formatter::MultiFormatter.new([
+    SimpleCov::Formatter::HTMLFormatter,
+    SimpleCov::Formatter::CoberturaFormatter,
+    SimpleCov::Formatter::JSONFormatter
+  ])
+end
 
 # require "active_support"
 # require "active_support/json"
