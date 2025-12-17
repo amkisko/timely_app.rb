@@ -34,7 +34,12 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "simplecov-cobertura", "~> 3"
   gem.add_development_dependency "webmock", "~> 3"
   gem.add_development_dependency "pry", "~> 0.15"
-  gem.add_development_dependency "standard", "~> 1"
+  gem.add_development_dependency "standard", "~> 1.52"
+  gem.add_development_dependency "standard-custom", "~> 1.0"
+  gem.add_development_dependency "standard-performance", "~> 1.8"
+  gem.add_development_dependency "standard-rspec", "~> 0.3"
+  gem.add_development_dependency "rubocop-rspec", "~> 3.8"
+  gem.add_development_dependency "rubocop-thread_safety", "~> 0.7"
   gem.add_development_dependency "rbs", "~> 3"
   gem.add_development_dependency "appraisal", "~> 2"
 end
