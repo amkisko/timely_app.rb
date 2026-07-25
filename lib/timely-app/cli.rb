@@ -30,52 +30,72 @@ module TimelyApp
     end
 
     def auth(client_id, client_secret)
-      if !client_id || !client_secret
-        puts "Usage: timely-app auth CLIENT_ID CLIENT_SECRET"
-        exit 1
-      end
+      validate_auth_credentials!(client_id, client_secret)
 
       auth_client = TimelyApp::Client.new(verbose: options[:verbose])
+      code = authorize_via_browser(auth_client, client_id)
+      token = fetch_oauth_token(auth_client, client_id, client_secret, code)
+      persist_or_print_token(token)
+    rescue TimelyApp::Error => error
+      handle_auth_failure(error, code)
+    end
+
+    private
+
+    def validate_auth_credentials!(client_id, client_secret)
+      return if client_id && client_secret
+
+      puts "Usage: timely-app auth CLIENT_ID CLIENT_SECRET"
+      exit 1
+    end
+
+    def authorize_via_browser(auth_client, client_id)
       auth_url = auth_client.get_oauth_authorize_url(
         client_id: client_id,
-        redirect_uri: "urn:ietf:wg:oauth:2.0:oob"
+        redirect_uri: oauth_redirect_uri
       )
       puts "Visit this URL in your browser:"
       puts auth_url
       puts "\nEnter authorization code here:"
-      code = gets.chomp
-      begin
-        token = auth_client.post_oauth_token(
-          client_id: client_id,
-          client_secret: client_secret,
-          code: code,
-          redirect_uri: "urn:ietf:wg:oauth:2.0:oob",
-          grant_type: "authorization_code"
-        )
-        if options[:save]
-          save_config_file(
-            access_token: token.access_token,
-            refresh_token: token.refresh_token,
-            created_at: token.created_at
-          )
-        else
-          puts "\nAccess token:\n#{token.access_token}\n"
-        end
-        if options[:verbose]
-          puts "Token details: #{token.to_h}"
-        end
-      rescue TimelyApp::Error => e
-        puts "Authentication failed"
-        if options[:verbose]
-          puts "Code: #{code}"
-          puts "Response code: #{e.response.code}"
-          puts "Response: #{e.response.body}"
-        end
-        exit 1
-      end
+      gets.chomp
     end
 
-    private
+    def oauth_redirect_uri
+      "urn:ietf:wg:oauth:2.0:oob"
+    end
+
+    def fetch_oauth_token(auth_client, client_id, client_secret, code)
+      auth_client.post_oauth_token(
+        client_id: client_id,
+        client_secret: client_secret,
+        code: code,
+        redirect_uri: oauth_redirect_uri,
+        grant_type: "authorization_code"
+      )
+    end
+
+    def persist_or_print_token(token)
+      if options[:save]
+        save_config_file(
+          access_token: token.access_token,
+          refresh_token: token.refresh_token,
+          created_at: token.created_at
+        )
+      else
+        puts "\nAccess token:\n#{token.access_token}\n"
+      end
+      puts "Token details: #{token.to_h}" if options[:verbose]
+    end
+
+    def handle_auth_failure(error, code)
+      puts "Authentication failed"
+      if options[:verbose]
+        puts "Code: #{code}"
+        puts "Response code: #{error.response.code}"
+        puts "Response: #{error.response.body}"
+      end
+      exit 1
+    end
 
     def config_file_path
       Dir.home + "/.timelyrc"

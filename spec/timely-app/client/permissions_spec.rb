@@ -1,7 +1,7 @@
 require "spec_helper"
 
-RSpec.describe "TimelyApp::Client permissions methods" do
-  include_context "TimelyApp::Client"
+RSpec.describe TimelyApp::Client do
+  include_context "with TimelyApp::Client"
 
   describe "#get_current_user_permissions" do
     it "returns a record" do

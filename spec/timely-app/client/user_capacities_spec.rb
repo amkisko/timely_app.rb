@@ -1,7 +1,7 @@
 require "spec_helper"
 
-RSpec.describe "TimelyApp::Client user capacities methods" do
-  include_context "TimelyApp::Client"
+RSpec.describe TimelyApp::Client do
+  include_context "with TimelyApp::Client"
 
   describe "#get_users_capacities" do
     it "returns an array" do

@@ -2,10 +2,10 @@ require "spec_helper"
 
 # Test LinkHeader through Response.parse since it's a private constant
 RSpec.describe "TimelyApp::LinkHeader" do
-  include_context "TimelyApp::Client"
+  include_context "with TimelyApp::Client"
 
   describe "parsing link headers" do
-    it "parses link header with rel through Response" do
+    it "parses link header with rel through Response", :aggregate_failures do
       link_header = '<https://api.timelyapp.com/1.1/account/events?page=2>; rel="next"'
 
       stub_request(:get, "#{base_url}/1.1/#{account_id}/events")
@@ -21,7 +21,7 @@ RSpec.describe "TimelyApp::LinkHeader" do
       expect(result.link[:next]).to eq("/1.1/account/events?page=2")
     end
 
-    it "handles empty link header" do
+    it "handles empty link header", :aggregate_failures do
       stub_request(:get, "#{base_url}/1.1/#{account_id}/events")
         .with(auth_header)
         .to_return(
@@ -35,7 +35,7 @@ RSpec.describe "TimelyApp::LinkHeader" do
       expect(result.link.to_h).to eq({})
     end
 
-    it "handles link header without matches" do
+    it "handles link header without matches", :aggregate_failures do
       stub_request(:get, "#{base_url}/1.1/#{account_id}/events")
         .with(auth_header)
         .to_return(
@@ -49,7 +49,7 @@ RSpec.describe "TimelyApp::LinkHeader" do
       expect(result.link.to_h).to eq({})
     end
 
-    it "parses multiple link headers" do
+    it "parses multiple link headers", :aggregate_failures do
       link_header = '<https://api.timelyapp.com/1.1/account/events?page=2>; rel="next", <https://api.timelyapp.com/1.1/account/events?page=1>; rel="prev"'
 
       stub_request(:get, "#{base_url}/1.1/#{account_id}/events")

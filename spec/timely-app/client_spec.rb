@@ -19,7 +19,7 @@ end
 
 RSpec.describe TimelyApp::Client do
   describe "verbose mode" do
-    let(:client) { TimelyApp::Client.new(access_token: "test_token", account_id: "test_account", verbose: true) }
+    let(:client) { described_class.new(access_token: "test_token", account_id: "test_account", verbose: true) }
 
     it "outputs request and response when verbose is enabled" do
       stub_request(:get, "https://api.timelyapp.com/1.1/test_account/events")
@@ -43,6 +43,7 @@ RSpec.describe TimelyApp::Client do
           TimelyApp::TestLiterals::CONTENT_TYPE_HEADER => TimelyApp::TestLiterals::APPLICATION_JSON_CHARSET
         })
     end
+
     let(:response) {
       [
         {
@@ -173,6 +174,7 @@ RSpec.describe TimelyApp::Client do
         }
       ]
     }
+
     it "returns record" do
       events = TimelyTestJob.new.get_events
       expect(events.first.project.client).to be_a(TimelyApp::Record)
@@ -190,6 +192,7 @@ RSpec.describe TimelyApp::Client do
           TimelyApp::TestLiterals::CONTENT_TYPE_HEADER => TimelyApp::TestLiterals::APPLICATION_JSON_CHARSET
         })
     end
+
     let(:response) {
       [
         {
@@ -310,6 +313,7 @@ RSpec.describe TimelyApp::Client do
         }
       ]
     }
+
     it "returns record" do
       projects = TimelyTestJob.new.get_projects
       expect(projects.first.client).to be_a(TimelyApp::Record)

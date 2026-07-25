@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe TimelyApp::Record do
   let(:id) { 123 }
-  let(:record) { TimelyApp::Record.new(project_id: id) }
+  let(:record) { described_class.new(project_id: id) }
 
   describe "#[]" do
     it "returns attribute values" do

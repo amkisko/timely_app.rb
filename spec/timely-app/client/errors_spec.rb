@@ -1,10 +1,10 @@
 require "spec_helper"
 
-RSpec.describe "TimelyApp::Client" do
-  include_context "TimelyApp::Client"
+RSpec.describe TimelyApp::Client do
+  include_context "with TimelyApp::Client"
 
   context "with a bad request error" do
-    it "raises an exception" do
+    it "raises an exception", :aggregate_failures do
       response = json_response.merge(status: 422, body: %(
         {
           "errors":{

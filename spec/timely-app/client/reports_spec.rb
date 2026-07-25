@@ -1,7 +1,7 @@
 require "spec_helper"
 
-RSpec.describe "TimelyApp::Client reports methods" do
-  include_context "TimelyApp::Client"
+RSpec.describe TimelyApp::Client do
+  include_context "with TimelyApp::Client"
 
   describe "#get_reports" do
     it "returns a record" do

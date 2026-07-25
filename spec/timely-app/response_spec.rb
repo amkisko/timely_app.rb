@@ -2,7 +2,7 @@ require "spec_helper"
 
 # Test Response through Client since it's a private constant
 RSpec.describe "TimelyApp::Response" do
-  include_context "TimelyApp::Client"
+  include_context "with TimelyApp::Client"
 
   let(:json_headers) { {TimelyApp::TestLiterals::CONTENT_TYPE_HEADER => TimelyApp::TestLiterals::APPLICATION_JSON} }
 
@@ -21,7 +21,7 @@ RSpec.describe "TimelyApp::Response" do
       expect(result).to be_instance_of(TimelyApp::Record)
     end
 
-    it "parses JSON response with Link header" do
+    it "parses JSON response with Link header", :aggregate_failures do
       link_header = '<https://api.timelyapp.com/1.1/account/events?page=2>; rel="next"'
       expect_request(:get, "#{base_url}/1.1/#{account_id}/events").with(auth_header).to_return(
         status: 200,
@@ -47,7 +47,7 @@ RSpec.describe "TimelyApp::Response" do
   end
 
   describe ".error" do
-    it "creates error with message from JSON response" do
+    it "creates error with message from JSON response", :aggregate_failures do
       expect_request(:get, "#{base_url}/1.1/#{account_id}/events").with(auth_header).to_return(
         status: 400,
         body: '{"errors": {"message": "Invalid request"}}',
@@ -61,7 +61,7 @@ RSpec.describe "TimelyApp::Response" do
       end
     end
 
-    it "creates error with error_description from JSON response" do
+    it "creates error with error_description from JSON response", :aggregate_failures do
       expect_request(:get, "#{base_url}/1.1/#{account_id}/events").with(auth_header).to_return(
         status: 401,
         body: '{"error_description": "Invalid token"}',
@@ -75,7 +75,7 @@ RSpec.describe "TimelyApp::Response" do
       end
     end
 
-    it "creates error without message for non-JSON response" do
+    it "creates error without message for non-JSON response", :aggregate_failures do
       expect_request(:get, "#{base_url}/1.1/#{account_id}/events").with(auth_header).to_return(
         status: 400,
         body: TimelyApp::TestLiterals::PLAIN_TEXT_BODY,

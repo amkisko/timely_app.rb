@@ -1,7 +1,7 @@
 require "spec_helper"
 
-RSpec.describe "TimelyApp::Client events methods" do
-  include_context "TimelyApp::Client"
+RSpec.describe TimelyApp::Client do
+  include_context "with TimelyApp::Client"
 
   describe "#create_event" do
     it TimelyApp::TestLiterals::RETURNS_A_RECORD do

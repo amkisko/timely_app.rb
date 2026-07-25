@@ -53,24 +53,29 @@ module TimelyApp
     end
 
     def request(http_request, body_object = nil)
-      http_request["User-Agent"] = @user_agent
-      http_request[@auth_header] = @auth_value
-
-      if body_object
-        http_request["Content-Type"] = "application/json"
-        http_request.body = JSON.generate(body_object)
-      end
-
+      apply_request_headers(http_request, body_object)
       response = @http.request(http_request)
-
-      if verbose?
-        puts ">> request: #{http_request.method} #{http_request.path} #{http_request.body}"
-        puts "<< response: #{http_request.method} #{http_request.path} #{response.code} #{response.body}"
-      end
-
+      log_verbose_exchange(http_request, response)
       raise Response.error(response) unless response.is_a?(Net::HTTPSuccess)
 
       Response.parse(response)
+    end
+
+    def apply_request_headers(http_request, body_object)
+      http_request["User-Agent"] = @user_agent
+      http_request[@auth_header] = @auth_value
+
+      return unless body_object
+
+      http_request["Content-Type"] = "application/json"
+      http_request.body = JSON.generate(body_object)
+    end
+
+    def log_verbose_exchange(http_request, response)
+      return unless verbose?
+
+      puts ">> request: #{http_request.method} #{http_request.path} #{http_request.body}"
+      puts "<< response: #{http_request.method} #{http_request.path} #{response.code} #{response.body}"
     end
   end
 end

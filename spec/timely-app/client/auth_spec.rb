@@ -1,7 +1,7 @@
 require "spec_helper"
 
-RSpec.describe "TimelyApp::Client auth methods" do
-  include_context "TimelyApp::Client"
+RSpec.describe TimelyApp::Client do
+  include_context "with TimelyApp::Client"
 
   describe "#get_oauth_authorize_url" do
     let(:redirect_uri) { "https://example.com" }
@@ -9,6 +9,7 @@ RSpec.describe "TimelyApp::Client auth methods" do
     let(:url) {
       "#{base_url}/1.1/oauth/authorize?response_type=code&redirect_uri=https%3A%2F%2Fexample.com&client_id=client-id-xxx"
     }
+
     it "returns full url" do
       expect(client.get_oauth_authorize_url(redirect_uri: redirect_uri, client_id: client_id)).to eq(url)
     end
