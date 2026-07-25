@@ -4,7 +4,7 @@ RSpec.describe "TimelyApp::Client teams methods" do
   include_context "TimelyApp::Client"
 
   describe "#create_team" do
-    it "returns a record" do
+    it TimelyApp::TestLiterals::RETURNS_A_RECORD do
       expect_request(:post, "#{base_url}/1.1/#{account_id}/teams").with(json_request).to_return(json_response.merge(status: 201))
 
       expect(client.create_team(name: "test-team", users: [])).to be_instance_of(TimelyApp::Record)
@@ -20,13 +20,13 @@ RSpec.describe "TimelyApp::Client teams methods" do
   end
 
   describe "#get_teams" do
-    it "returns an array" do
+    it TimelyApp::TestLiterals::RETURNS_AN_ARRAY do
       expect_request(:get, "#{base_url}/1.1/#{account_id}/teams").with(auth_header).to_return(json_array_response)
 
       expect(client.get_teams).to eq([])
     end
 
-    it "encodes params" do
+    it TimelyApp::TestLiterals::ENCODES_PARAMS do
       expect_request(:get, "#{base_url}/1.1/#{account_id}/teams?limit=10")
 
       client.get_teams(limit: 10)
@@ -34,7 +34,7 @@ RSpec.describe "TimelyApp::Client teams methods" do
   end
 
   describe "#get_team" do
-    it "returns a record" do
+    it TimelyApp::TestLiterals::RETURNS_A_RECORD do
       expect_request(:get, "#{base_url}/1.1/#{account_id}/teams/#{id}").with(auth_header).to_return(json_response)
 
       expect(client.get_team(id)).to be_instance_of(TimelyApp::Record)
@@ -42,7 +42,7 @@ RSpec.describe "TimelyApp::Client teams methods" do
   end
 
   describe "#update_team" do
-    it "returns a record" do
+    it TimelyApp::TestLiterals::RETURNS_A_RECORD do
       expect_request(:put, "#{base_url}/1.1/#{account_id}/teams/#{id}").with(json_request).to_return(json_response)
 
       expect(client.update_team(id, name: "updated-team", users: [])).to be_instance_of(TimelyApp::Record)

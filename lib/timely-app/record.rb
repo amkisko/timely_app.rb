@@ -20,7 +20,7 @@ module TimelyApp
       end
     end
 
-    def respond_to_missing?(name, include_private = false)
+    def respond_to_missing?(name, _include_private = false)
       @attributes.has_key?(name)
     end
 

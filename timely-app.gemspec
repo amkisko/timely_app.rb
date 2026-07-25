@@ -24,10 +24,11 @@ Gem::Specification.new do |gem|
   gem.bindir = "bin"
   gem.executables = ["timely-app"]
 
-  gem.required_ruby_version = ">= 2.5.0"
+  gem.required_ruby_version = ">= 3.4"
   gem.require_path = "lib"
 
   gem.add_development_dependency "rspec-core", "~> 3"
+  gem.add_development_dependency "polyrun", ">= 2.2.0"
   gem.add_development_dependency "rspec-expectations", "~> 3"
   gem.add_development_dependency "rspec_junit_formatter", "~> 0.6"
   gem.add_development_dependency "simplecov", "~> 0.22"

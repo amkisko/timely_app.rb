@@ -1,6 +1,6 @@
 # timely-app
 
-[![Gem Version](https://badge.fury.io/rb/timely-app.svg)](https://badge.fury.io/rb/timely-app) [![Test Status](https://github.com/amkisko/timely-app/actions/workflows/test.yml/badge.svg)](https://github.com/amkisko/timely-app/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/amkisko/timely_app.rb/graph/badge.svg?token=QL3A7ATCRK)](https://codecov.io/gh/amkisko/timely_app.rb)
+[![Gem Version](https://badge.fury.io/rb/timely-app.svg)](https://badge.fury.io/rb/timely-app) [![Test Status](https://github.com/amkisko/timely-app/actions/workflows/test.yml/badge.svg)](https://github.com/amkisko/timely-app/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/amkisko/timely_app.rb/graph/badge.svg?token=QL3A7ATCRK)](https://app.codecov.io/github/amkisko/timely_app.rb)
 
 Ruby client for the [Timely API](https://dev.timelyapp.com).
 
@@ -104,6 +104,19 @@ rm timely-app-*.gem
 gem build timely-app.gemspec
 gem push timely-app-*.gem
 ```
+
+## Links
+
+- [GitHub](https://github.com/amkisko/timely_app.rb)
+- [GitLab](https://gitlab.com/amkisko/timely_app.rb)
+- [RubyGems](https://rubygems.org/gems/timely-app)
+- [Versions Atom](https://rubygems.org/gems/timely-app/versions.atom) (feed id `5816973660388`)
+- [libraries.io](https://libraries.io/rubygems/timely-app)
+- [Deps.dev](https://deps.dev/rubygems/timely-app)
+- [SonarCloud](https://sonarcloud.io/project/overview?id=amkisko_timely_app.rb)
+- [Snyk](https://snyk.io/test/github/amkisko/timely_app.rb)
+- [Codecov](https://app.codecov.io/github/amkisko/timely_app.rb)
+- [OpenSSF Scorecard](https://scorecard.dev/viewer/?uri=github.com/amkisko/timely_app.rb)
 
 ## License
 

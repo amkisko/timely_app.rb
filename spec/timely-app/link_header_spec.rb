@@ -6,15 +6,14 @@ RSpec.describe "TimelyApp::LinkHeader" do
 
   describe "parsing link headers" do
     it "parses link header with rel through Response" do
-      response_body = '{"id": 123}'
       link_header = '<https://api.timelyapp.com/1.1/account/events?page=2>; rel="next"'
 
       stub_request(:get, "#{base_url}/1.1/#{account_id}/events")
         .with(auth_header)
         .to_return(
           status: 200,
-          body: response_body,
-          headers: {"Content-Type" => "application/json", "Link" => link_header}
+          body: TimelyApp::TestLiterals::JSON_ID_BODY,
+          headers: {TimelyApp::TestLiterals::CONTENT_TYPE_HEADER => TimelyApp::TestLiterals::APPLICATION_JSON, "Link" => link_header}
         )
 
       result = client.get("/1.1/#{account_id}/events")
@@ -27,8 +26,8 @@ RSpec.describe "TimelyApp::LinkHeader" do
         .with(auth_header)
         .to_return(
           status: 200,
-          body: '{"id": 123}',
-          headers: {"Content-Type" => "application/json", "Link" => ""}
+          body: TimelyApp::TestLiterals::JSON_ID_BODY,
+          headers: {TimelyApp::TestLiterals::CONTENT_TYPE_HEADER => TimelyApp::TestLiterals::APPLICATION_JSON, "Link" => ""}
         )
 
       result = client.get("/1.1/#{account_id}/events")
@@ -41,8 +40,8 @@ RSpec.describe "TimelyApp::LinkHeader" do
         .with(auth_header)
         .to_return(
           status: 200,
-          body: '{"id": 123}',
-          headers: {"Content-Type" => "application/json", "Link" => "no matches here"}
+          body: TimelyApp::TestLiterals::JSON_ID_BODY,
+          headers: {TimelyApp::TestLiterals::CONTENT_TYPE_HEADER => TimelyApp::TestLiterals::APPLICATION_JSON, "Link" => "no matches here"}
         )
 
       result = client.get("/1.1/#{account_id}/events")
@@ -57,8 +56,8 @@ RSpec.describe "TimelyApp::LinkHeader" do
         .with(auth_header)
         .to_return(
           status: 200,
-          body: '{"id": 123}',
-          headers: {"Content-Type" => "application/json", "Link" => link_header}
+          body: TimelyApp::TestLiterals::JSON_ID_BODY,
+          headers: {TimelyApp::TestLiterals::CONTENT_TYPE_HEADER => TimelyApp::TestLiterals::APPLICATION_JSON, "Link" => link_header}
         )
 
       result = client.get("/1.1/#{account_id}/events")

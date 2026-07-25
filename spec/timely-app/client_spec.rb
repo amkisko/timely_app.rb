@@ -2,7 +2,7 @@ require "spec_helper"
 
 class TimelyTestJob
   def get_events
-    client.get_events(day: "2023-01-01", page: 1, per_page: 50)
+    client.get_events(day: TimelyApp::TestLiterals::EVENT_DAY, page: 1, per_page: 50)
   end
 
   def get_projects
@@ -24,7 +24,7 @@ RSpec.describe TimelyApp::Client do
     it "outputs request and response when verbose is enabled" do
       stub_request(:get, "https://api.timelyapp.com/1.1/test_account/events")
         .with(headers: {"Authorization" => "Bearer test_token"})
-        .to_return(status: 200, body: "[]", headers: {"Content-Type" => "application/json"})
+        .to_return(status: 200, body: "[]", headers: {TimelyApp::TestLiterals::CONTENT_TYPE_HEADER => TimelyApp::TestLiterals::APPLICATION_JSON})
 
       expect {
         client.get("/1.1/test_account/events")
@@ -34,13 +34,13 @@ RSpec.describe TimelyApp::Client do
 
   describe "#get_events" do
     before do
-      stub_request(:get, "https://api.timelyapp.com/1.1/test_account_id/events?day=2023-01-01&page=1&per_page=50")
+      stub_request(:get, "https://api.timelyapp.com/1.1/test_account_id/events?day=#{TimelyApp::TestLiterals::EVENT_DAY}&page=1&per_page=50")
         .with(
           headers: {
             "Authorization" => "Bearer test_access_token"
           }
         ).to_return(status: 200, body: response.to_json, headers: {
-          "Content-Type" => "application/json;charset=utf-8"
+          TimelyApp::TestLiterals::CONTENT_TYPE_HEADER => TimelyApp::TestLiterals::APPLICATION_JSON_CHARSET
         })
     end
     let(:response) {
@@ -59,7 +59,7 @@ RSpec.describe TimelyApp::Client do
               medium: "https://www.gravatar.com/avatar/18bb21bcbf431e4452c17ea864ae310e?d=http%3A%2F%2Fapp.timelyapp.local%2Fassets%2Fthumbs%2Fuser_medium-459a8b7582a7417f4b47a0064f692ffcd161fb11eda9dcc359f1b5e63fe51235.jpg&s=",
               timeline: "https://www.gravatar.com/avatar/18bb21bcbf431e4452c17ea864ae310e?d=http%3A%2F%2Fapp.timelyapp.local%2Fassets%2Fthumbs%2Fuser_timeline-e61ac46443487bd24fbaecab08cfacf5d0835b371cbe97a33b9e738744ef8334.jpg&s="
             },
-            updated_at: "2023-07-13T14:25:10+02:00"
+            updated_at: TimelyApp::TestLiterals::UPDATED_AT_EVENTS
           },
           project: {
             id: 45,
@@ -78,7 +78,7 @@ RSpec.describe TimelyApp::Client do
               name: "Dolorem accusamus consequuntur nihil.",
               active: true,
               external_id: nil,
-              updated_at: "2023-07-13T14:25:10+02:00"
+              updated_at: TimelyApp::TestLiterals::UPDATED_AT_EVENTS
             },
             required_notes: false,
             required_labels: false,
@@ -153,7 +153,7 @@ RSpec.describe TimelyApp::Client do
           billed: false,
           billable: true,
           to: "2023-07-13T17:55:10+02:00",
-          from: "2023-07-13T14:25:10+02:00",
+          from: TimelyApp::TestLiterals::UPDATED_AT_EVENTS,
           deleted: false,
           hour_rate: 100.0,
           hour_rate_in_cents: 10000,
@@ -187,7 +187,7 @@ RSpec.describe TimelyApp::Client do
             "Authorization" => "Bearer test_access_token"
           }
         ).to_return(status: 200, body: response.to_json, headers: {
-          "Content-Type" => "application/json;charset=utf-8"
+          TimelyApp::TestLiterals::CONTENT_TYPE_HEADER => TimelyApp::TestLiterals::APPLICATION_JSON_CHARSET
         })
     end
     let(:response) {
@@ -209,7 +209,7 @@ RSpec.describe TimelyApp::Client do
             name: "Aliquam magnam et distinctio.",
             active: true,
             external_id: nil,
-            updated_at: "2023-07-13T14:25:21+02:00"
+            updated_at: TimelyApp::TestLiterals::UPDATED_AT_PROJECTS
           },
           required_notes: false,
           required_labels: false,
@@ -237,8 +237,8 @@ RSpec.describe TimelyApp::Client do
               user_id: 362,
               hour_rate: 100.0,
               hour_rate_in_cents: 10000.0,
-              updated_at: "2023-07-13T14:25:21+02:00",
-              created_at: "2023-07-13T14:25:21+02:00",
+              updated_at: TimelyApp::TestLiterals::UPDATED_AT_PROJECTS,
+              created_at: TimelyApp::TestLiterals::UPDATED_AT_PROJECTS,
               deleted: false
             }
           ],

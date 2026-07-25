@@ -4,6 +4,8 @@ require "spec_helper"
 RSpec.describe "TimelyApp::Response" do
   include_context "TimelyApp::Client"
 
+  let(:json_headers) { {TimelyApp::TestLiterals::CONTENT_TYPE_HEADER => TimelyApp::TestLiterals::APPLICATION_JSON} }
+
   describe ".parse" do
     it "returns :no_content for 204 responses" do
       expect_request(:delete, "#{base_url}/1.1/#{account_id}/events/#{id}").with(auth_header).to_return(status: 204)
@@ -24,7 +26,7 @@ RSpec.describe "TimelyApp::Response" do
       expect_request(:get, "#{base_url}/1.1/#{account_id}/events").with(auth_header).to_return(
         status: 200,
         body: "{}",
-        headers: {"Content-Type" => "application/json", "Link" => link_header}
+        headers: json_headers.merge("Link" => link_header)
       )
 
       result = client.get("/1.1/#{account_id}/events")
@@ -35,12 +37,12 @@ RSpec.describe "TimelyApp::Response" do
     it "returns body for non-JSON response" do
       expect_request(:get, "#{base_url}/1.1/#{account_id}/events").with(auth_header).to_return(
         status: 200,
-        body: "plain text",
-        headers: {"Content-Type" => "text/plain"}
+        body: TimelyApp::TestLiterals::PLAIN_TEXT_BODY,
+        headers: {TimelyApp::TestLiterals::CONTENT_TYPE_HEADER => "text/plain"}
       )
 
       result = client.get("/1.1/#{account_id}/events")
-      expect(result).to eq("plain text")
+      expect(result).to eq(TimelyApp::TestLiterals::PLAIN_TEXT_BODY)
     end
   end
 
@@ -49,7 +51,7 @@ RSpec.describe "TimelyApp::Response" do
       expect_request(:get, "#{base_url}/1.1/#{account_id}/events").with(auth_header).to_return(
         status: 400,
         body: '{"errors": {"message": "Invalid request"}}',
-        headers: {"Content-Type" => "application/json"}
+        headers: json_headers
       )
 
       expect {
@@ -63,7 +65,7 @@ RSpec.describe "TimelyApp::Response" do
       expect_request(:get, "#{base_url}/1.1/#{account_id}/events").with(auth_header).to_return(
         status: 401,
         body: '{"error_description": "Invalid token"}',
-        headers: {"Content-Type" => "application/json"}
+        headers: json_headers
       )
 
       expect {
@@ -76,8 +78,8 @@ RSpec.describe "TimelyApp::Response" do
     it "creates error without message for non-JSON response" do
       expect_request(:get, "#{base_url}/1.1/#{account_id}/events").with(auth_header).to_return(
         status: 400,
-        body: "plain text",
-        headers: {"Content-Type" => "text/plain"}
+        body: TimelyApp::TestLiterals::PLAIN_TEXT_BODY,
+        headers: {TimelyApp::TestLiterals::CONTENT_TYPE_HEADER => "text/plain"}
       )
 
       expect {
@@ -92,7 +94,7 @@ RSpec.describe "TimelyApp::Response" do
       expect_request(:get, "#{base_url}/1.1/#{account_id}/events").with(auth_header).to_return(
         status: 401,
         body: "{}",
-        headers: {"Content-Type" => "application/json"}
+        headers: json_headers
       )
 
       expect {
@@ -104,7 +106,7 @@ RSpec.describe "TimelyApp::Response" do
       expect_request(:get, "#{base_url}/1.1/#{account_id}/events").with(auth_header).to_return(
         status: 403,
         body: "{}",
-        headers: {"Content-Type" => "application/json"}
+        headers: json_headers
       )
 
       expect {
@@ -116,7 +118,7 @@ RSpec.describe "TimelyApp::Response" do
       expect_request(:get, "#{base_url}/1.1/#{account_id}/events/#{id}").with(auth_header).to_return(
         status: 404,
         body: "{}",
-        headers: {"Content-Type" => "application/json"}
+        headers: json_headers
       )
 
       expect {
@@ -128,7 +130,7 @@ RSpec.describe "TimelyApp::Response" do
       expect_request(:get, "#{base_url}/1.1/#{account_id}/events").with(auth_header).to_return(
         status: 422,
         body: "{}",
-        headers: {"Content-Type" => "application/json"}
+        headers: json_headers
       )
 
       expect {
@@ -140,7 +142,7 @@ RSpec.describe "TimelyApp::Response" do
       expect_request(:get, "#{base_url}/1.1/#{account_id}/events").with(auth_header).to_return(
         status: 500,
         body: "{}",
-        headers: {"Content-Type" => "application/json"}
+        headers: json_headers
       )
 
       expect {
@@ -152,7 +154,7 @@ RSpec.describe "TimelyApp::Response" do
       # Create a custom response class that doesn't match any known HTTP error types
       custom_response = Object.new
       def custom_response.content_type
-        "application/json"
+        TimelyApp::TestLiterals::APPLICATION_JSON
       end
 
       def custom_response.body

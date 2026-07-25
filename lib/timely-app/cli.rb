@@ -96,7 +96,7 @@ module TimelyApp
     end
 
     def check_access_token
-      if !fetch_access_token
+      unless fetch_access_token
         puts "No access token found. Run `timely-app auth` to get one."
         exit 1
       end
