@@ -1,3 +1,7 @@
+module TimelyApp
+  VERSION = "1.3.2"
+end
+
 require "timely-app/client"
 require "timely-app/client/accounts"
 require "timely-app/client/auth"
@@ -13,7 +17,4 @@ require "timely-app/client/teams"
 require "timely-app/client/user_capacities"
 require "timely-app/client/users"
 require "timely-app/client/webhooks"
-
-module TimelyApp
-  VERSION = "1.3.2"
-end
+require "timely-app/cli"

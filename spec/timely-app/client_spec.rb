@@ -30,6 +30,33 @@ RSpec.describe TimelyApp::Client do
         client.get("/1.1/test_account/events")
       }.to output(/>> request: GET.*<< response: GET/m).to_stdout
     end
+
+    it "redacts OAuth credentials and tokens" do
+      stub_request(:post, "https://api.timelyapp.com/1.1/oauth/token")
+        .to_return(
+          status: 200,
+          body: JSON.generate(access_token: "response-access-token", refresh_token: "response-refresh-token"),
+          headers: {TimelyApp::TestLiterals::CONTENT_TYPE_HEADER => TimelyApp::TestLiterals::APPLICATION_JSON}
+        )
+      secrets = %w[
+        request-client-secret
+        request-authorization-code
+        response-access-token
+        response-refresh-token
+      ]
+      safe_output = satisfy("include a filter marker and no OAuth secrets") do |output|
+        output.include?("[FILTERED]") && secrets.none? { |secret| output.include?(secret) }
+      end
+
+      expect {
+        client.post_oauth_token(
+          client_id: "client-id",
+          client_secret: "request-client-secret",
+          code: "request-authorization-code",
+          redirect_uri: "https://example.com/callback"
+        )
+      }.to output(safe_output).to_stdout
+    end
   end
 
   describe "#get_events" do

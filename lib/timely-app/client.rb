@@ -10,6 +10,11 @@ require "json"
 
 module TimelyApp
   class Client
+    DEFAULT_OPEN_TIMEOUT = 5
+    DEFAULT_READ_TIMEOUT = 30
+    FILTERED_VALUE = "[FILTERED]"
+    SENSITIVE_FIELD = /authorization|code|credential|password|secret|token/i
+
     attr_accessor :account_id
 
     def initialize(options = {})
@@ -18,9 +23,7 @@ module TimelyApp
       @user_agent = options.fetch(:user_agent) { "timely-app/#{VERSION} ruby/#{RUBY_VERSION}" }
 
       @host = "api.timelyapp.com"
-
-      @http = Net::HTTP.new(@host, Net::HTTP.https_default_port)
-      @http.use_ssl = true
+      @http = build_http(options)
 
       @account_id = options[:account_id]
       @verbose = options[:verbose] || !ENV["VERBOSE"].nil? || false
@@ -31,6 +34,14 @@ module TimelyApp
     end
 
     private
+
+    def build_http(options)
+      http = Net::HTTP.new(@host, Net::HTTP.https_default_port)
+      http.use_ssl = true
+      http.open_timeout = options.fetch(:open_timeout, DEFAULT_OPEN_TIMEOUT)
+      http.read_timeout = options.fetch(:read_timeout, DEFAULT_READ_TIMEOUT)
+      http
+    end
 
     def verbose?
       @verbose == true
@@ -74,8 +85,29 @@ module TimelyApp
     def log_verbose_exchange(http_request, response)
       return unless verbose?
 
-      puts ">> request: #{http_request.method} #{http_request.path} #{http_request.body}"
-      puts "<< response: #{http_request.method} #{http_request.path} #{response.code} #{response.body}"
+      puts ">> request: #{http_request.method} #{http_request.path} #{filtered_body(http_request.body)}"
+      puts "<< response: #{http_request.method} #{http_request.path} #{response.code} #{filtered_body(response.body)}"
+    end
+
+    def filtered_body(body)
+      return if body.nil? || body.empty?
+
+      JSON.generate(filter_sensitive_values(JSON.parse(body)))
+    rescue JSON::ParserError
+      FILTERED_VALUE
+    end
+
+    def filter_sensitive_values(value)
+      case value
+      when Hash
+        value.to_h { |key, nested_value|
+          [key, key.match?(SENSITIVE_FIELD) ? FILTERED_VALUE : filter_sensitive_values(nested_value)]
+        }
+      when Array
+        value.map { |nested_value| filter_sensitive_values(nested_value) }
+      else
+        value
+      end
     end
   end
 end

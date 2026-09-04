@@ -1,3 +1,6 @@
+require "securerandom"
+require "yaml"
+
 module TimelyApp
   class CLI
     attr_reader :options, :client
@@ -84,7 +87,7 @@ module TimelyApp
       else
         puts "\nAccess token:\n#{token.access_token}\n"
       end
-      puts "Token details: #{token.to_h}" if options[:verbose]
+      puts "Authentication succeeded" if options[:verbose]
     end
 
     def handle_auth_failure(error, code)
@@ -102,9 +105,16 @@ module TimelyApp
     end
 
     def read_config_file
-      if File.exist?(config_file_path)
-        YAML.load_file(config_file_path)
-      end
+      return unless File.exist?(config_file_path)
+
+      config = YAML.safe_load_file(
+        config_file_path,
+        permitted_classes: [Symbol, Time],
+        aliases: false
+      )
+      return {} unless config.is_a?(Hash)
+
+      config.to_h { |key, value| [key.to_s, value] }
     end
 
     def fetch_account_id
@@ -124,9 +134,30 @@ module TimelyApp
 
     def save_config_file(**options)
       config = read_config_file || {}
-      config.merge!(options)
-      File.write(config_file_path, config.to_yaml)
+      config.merge!(options.to_h { |key, value| [key.to_s, value] })
+      write_config_file(config.to_yaml)
       puts "Saved to #{config_file_path}"
+    end
+
+    def write_config_file(content)
+      temporary_path = "#{config_file_path}.#{Process.pid}.#{SecureRandom.hex(8)}.tmp"
+
+      File.open(temporary_path, File::WRONLY | File::CREAT | File::EXCL, 0o600) do |file|
+        file.write(content)
+        file.flush
+        file.fsync
+      end
+      File.rename(temporary_path, config_file_path)
+      File.chmod(0o600, config_file_path)
+      sync_config_directory
+    ensure
+      File.delete(temporary_path) if temporary_path && File.exist?(temporary_path)
+    end
+
+    def sync_config_directory
+      File.open(File.dirname(config_file_path), File::RDONLY, &:fsync)
+    rescue Errno::EINVAL
+      nil
     end
   end
 end

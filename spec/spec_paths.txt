@@ -1,3 +1,4 @@
+spec/timely-app/cli_spec.rb
 spec/timely-app/client/accounts_spec.rb
 spec/timely-app/client/auth_spec.rb
 spec/timely-app/client/clients_spec.rb
