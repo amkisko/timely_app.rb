@@ -14,9 +14,11 @@ Update the version source, changelog and path-package lock entries. Repair relea
 
 ## Next
 
-Review and commit before release. No tag, push or publication was performed.
+Superseded by docs/changelogs/20261029152248_1-3-3-release-preparation.md and docs/reviews/20261029152248_engineering-audit-release-preparation.md after the re-audit closed the missing pull_request trigger and CLI authorization-code EOF path.
 
 ## Source
 
 - ../issues/20261028093000_engineering-release-audit.md
+- ../reviews/20261029152248_engineering-audit-release-preparation.md
+- ../changelogs/20261029152248_1-3-3-release-preparation.md
 - ../../CHANGELOG.md

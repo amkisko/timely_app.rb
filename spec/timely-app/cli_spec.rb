@@ -28,6 +28,22 @@ RSpec.describe TimelyApp::CLI do
     expect { expect { cli.auth("client", "secret") }.to raise_error(SystemExit) }.to output(safe_output).to_stdout
   end
 
+  it "exits when authorization input is closed", :aggregate_failures do
+    cli = described_class.new(access_token: "token", account_id: "account")
+    cli.define_singleton_method(:gets) { nil }
+    expect {
+      expect { cli.auth("client", "secret") }.to raise_error(SystemExit)
+    }.to output(/Authorization code is required/).to_stdout
+  end
+
+  it "exits when the authorization code is blank", :aggregate_failures do
+    cli = described_class.new(access_token: "token", account_id: "account")
+    cli.define_singleton_method(:gets) { "\n" }
+    expect {
+      expect { cli.auth("client", "secret") }.to raise_error(SystemExit)
+    }.to output(/Authorization code is required/).to_stdout
+  end
+
   it "stores configuration keys consistently in a private file", :aggregate_failures do
     cli = described_class.new(access_token: "token", account_id: "account")
 

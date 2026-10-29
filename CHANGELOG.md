@@ -1,10 +1,11 @@
 # CHANGELOG
 
-## 1.3.3 (2026-10-28)
+## 1.3.3 (2026-10-29)
 
 - Preserve HTTP error types when the server returns malformed or unexpected JSON.
 - Keep authorization codes and response contents out of failed sign-in diagnostics.
 - Cancel release preparation when confirmation input is closed.
+- Exit sign-in when the authorization code prompt is closed or blank.
 
 ## 1.3.2 (2026-07-25)
 

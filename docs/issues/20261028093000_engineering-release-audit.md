@@ -20,7 +20,7 @@ All listed fixes have high confidence and observed evidence from failing-then-pa
 
 Confirmed privacy finding: medium severity, high confidence. An operator enabling verbose authentication exposes the received authorization code and server response to terminal or captured logs. CLI#auth -> handle_auth_failure -> stdout crosses the intended redaction boundary. Likelihood requires verbose failure; demonstrated impact is both synthetic values in captured output. Fingerprint: secret-log:CLI.handle_auth_failure:stdout. Independent review confirmed the repair.
 
-Enable the test workflow on pull requests and set contents: read; previously the tests started only after a main push or manual dispatch. Third-party actions are pinned by commit. Workflow YAML, triggers, permissions and matrix paths were inspected locally; hosted GitHub Actions were not run.
+Set contents: read and concurrency cancel-in-progress on the test workflow; third-party actions stay pinned by commit. The earlier claim that pull_request was enabled was wrong: commit 21a4896 did not add that trigger. The 2026-10-29 re-audit added pull_request for branches: [main]. Workflow YAML, triggers, permissions and matrix paths were inspected locally; hosted GitHub Actions were not run.
 
 Checks with Ruby 4.0.2 on arm64 macOS:
 
@@ -38,10 +38,11 @@ Re-audit: checked the corrected failure paths, consumers, release metadata, pack
 
 ## Next
 
-Review and commit the prepared changes before the existing release command is used. The command requires a clean worktree and interactive confirmation. No release has been published.
+Re-audit closed the missing pull_request trigger and CLI authorization-code EOF path. See docs/reviews/20261029152248_engineering-audit-release-preparation.md. Review and commit, then make release. The command requires a clean worktree and interactive confirmation. No release has been published.
 
 ## Source
 
 - AGENTS.md and .agents/skills/engineering-audit/.
 - .agents/skills/changelog-update/.
 - CHANGELOG.md, spec/, .github/workflows/test.yml and usr/reports/resource_smoke.rb.
+- docs/reviews/20261029152248_engineering-audit-release-preparation.md.

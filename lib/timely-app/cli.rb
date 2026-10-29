@@ -60,7 +60,12 @@ module TimelyApp
       puts "Visit this URL in your browser:"
       puts auth_url
       puts "\nEnter authorization code here:"
-      gets.chomp
+      code = gets&.chomp
+      if code.nil? || code.empty?
+        puts "Authorization code is required"
+        exit 1
+      end
+      code
     end
 
     def oauth_redirect_uri
