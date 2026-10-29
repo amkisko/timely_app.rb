@@ -47,6 +47,13 @@ RSpec.describe "TimelyApp::Response" do
   end
 
   describe ".error" do
+    ["not json", "[]", '"unavailable"', '{"errors":["unavailable"]}'].each do |body|
+      it "preserves the HTTP error class for #{body.inspect}" do
+        stub_request(:get, "#{base_url}/1.1/accounts").to_return(status: 503, body: body, headers: json_headers)
+        expect { client.get_accounts }.to raise_error(TimelyApp::ServerError)
+      end
+    end
+
     it "creates error with message from JSON response", :aggregate_failures do
       expect_request(:get, "#{base_url}/1.1/#{account_id}/events").with(auth_header).to_return(
         status: 400,

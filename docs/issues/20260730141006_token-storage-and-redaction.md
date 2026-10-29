@@ -1,5 +1,9 @@
 # Token storage and redaction
 
+## Participants
+
+Andrei Makarov (@amkisko)
+
 ## Decisions
 
 OAuth configuration writes use a same-directory temporary file created with mode 0600 and an atomic rename. Existing configuration files are tightened to mode 0600.

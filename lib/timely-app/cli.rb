@@ -40,7 +40,7 @@ module TimelyApp
       token = fetch_oauth_token(auth_client, client_id, client_secret, code)
       persist_or_print_token(token)
     rescue TimelyApp::Error => error
-      handle_auth_failure(error, code)
+      handle_auth_failure(error)
     end
 
     private
@@ -90,12 +90,10 @@ module TimelyApp
       puts "Authentication succeeded" if options[:verbose]
     end
 
-    def handle_auth_failure(error, code)
+    def handle_auth_failure(error)
       puts "Authentication failed"
       if options[:verbose]
-        puts "Code: #{code}"
         puts "Response code: #{error.response.code}"
-        puts "Response: #{error.response.body}"
       end
       exit 1
     end

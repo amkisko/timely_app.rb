@@ -27,13 +27,20 @@ module TimelyApp
     end
 
     def error(response)
-      if response.content_type == "application/json"
-        body = JSON.parse(response.body)
-        message = body&.dig("errors", "message") || body&.dig("error_description")
-        error_class(response).new(message, response: response, errors: body&.dig("errors"))
-      else
-        error_class(response).new(response: response)
-      end
+      body = error_body(response)
+      errors = body["errors"]
+      message = errors.is_a?(Hash) ? errors["message"] : nil
+      message ||= body["error_description"]
+      error_class(response).new(message, response: response, errors: errors)
+    end
+
+    def error_body(response)
+      return {} unless response.content_type == "application/json"
+
+      body = JSON.parse(response.body.to_s)
+      body.is_a?(Hash) ? body : {}
+    rescue JSON::ParserError
+      {}
     end
 
     def error_class(object)

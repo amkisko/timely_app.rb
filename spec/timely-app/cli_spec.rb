@@ -16,6 +16,18 @@ RSpec.describe TimelyApp::CLI do
     File.umask(original_umask)
   end
 
+  it "does not print the authorization code or response body after failed authentication", :aggregate_failures do
+    cli = described_class.new(access_token: "token", account_id: "account", verbose: true)
+    cli.define_singleton_method(:gets) { "synthetic-authorization-code\n" }
+    stub_request(:post, "https://api.timelyapp.com/1.1/oauth/token")
+      .to_return(status: 401, body: "synthetic-response-secret")
+    safe_output = satisfy("report the status without exposing credentials") do |output|
+      output.include?("Authentication failed") && output.include?("401") &&
+        !output.include?("synthetic-authorization-code") && !output.include?("synthetic-response-secret")
+    end
+    expect { expect { cli.auth("client", "secret") }.to raise_error(SystemExit) }.to output(safe_output).to_stdout
+  end
+
   it "stores configuration keys consistently in a private file", :aggregate_failures do
     cli = described_class.new(access_token: "token", account_id: "account")
 
