@@ -28,7 +28,7 @@ Gem::Specification.new do |gem|
   gem.require_path = "lib"
 
   gem.add_development_dependency "rspec-core", "~> 3"
-  gem.add_development_dependency "polyrun", ">= 2.2.0"
+  gem.add_development_dependency "polyrun", ">= 2.2.9"
   gem.add_development_dependency "rspec-expectations", "~> 3"
   gem.add_development_dependency "webmock", "~> 3"
   gem.add_development_dependency "pry", "~> 0.15"

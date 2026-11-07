@@ -35,7 +35,7 @@ GEM
     parser (3.3.12.0)
       ast (~> 2.4.1)
       racc
-    polyrun (2.2.5)
+    polyrun (2.2.9)
     prism (1.9.0)
     pry (0.16.1)
       coderay (~> 1.1)
@@ -147,7 +147,7 @@ PLATFORMS
 
 DEPENDENCIES
   appraisal (~> 2)
-  polyrun (>= 2.2.0)
+  polyrun (>= 2.2.9)
   pry (~> 0.15)
   rbs (~> 4)
   rspec-core (~> 3)
